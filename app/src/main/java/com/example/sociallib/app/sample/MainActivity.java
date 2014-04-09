@@ -1,11 +1,11 @@
-package com.example.sociallib.app;
+package com.example.sociallib.app.sample;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.sociallib.app.model.InstagramSocialObject;
+import com.example.sociallib.app.R;
 
 
 public class MainActivity extends Activity {

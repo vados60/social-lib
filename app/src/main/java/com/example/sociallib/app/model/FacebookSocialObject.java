@@ -1,5 +1,7 @@
 package com.example.sociallib.app.model;
 
+import android.os.Bundle;
+
 import com.example.sociallib.app.utils.SocialConst;
 
 public class FacebookSocialObject extends SocialObject {
@@ -7,12 +9,13 @@ public class FacebookSocialObject extends SocialObject {
     private String mClientId;
     private String mRedirectUri;
     private String token;
+    private SocialCallback mSocialCallback;
 
     /**
      * @param pClientId    Facebook application ID
      * @param pRedirectUri Redirect URL
      */
-    public FacebookSocialObject(String pClientId, String pRedirectUri) {
+    public FacebookSocialObject( String pClientId, String pRedirectUri) {
         mClientId = pClientId;
         mRedirectUri = pRedirectUri;
     }
@@ -20,6 +23,11 @@ public class FacebookSocialObject extends SocialObject {
     @Override
     public String getToken() {
         return token;
+    }
+
+    @Override
+    public void setCallback(SocialCallback pCallback) {
+        mSocialCallback = pCallback;
     }
 
     public void setToken(String token) {
@@ -30,6 +38,9 @@ public class FacebookSocialObject extends SocialObject {
     public Boolean isParseResponseSuccess(String response) {
         if (response.contains(SocialConst.ACCESS_TOKEN) && (!response.contains(SocialConst.ERROR_CONST))) {
             setToken(response);
+            Bundle b = new Bundle();
+            b.putString(SocialConst.ACCESS_TOKEN, getToken());
+            mSocialCallback.isSucceed(b);
             return true;
         } else {
             return false;

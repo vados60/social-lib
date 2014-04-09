@@ -1,9 +1,7 @@
 package com.example.sociallib.app.model;
 
-import android.content.Context;
 
-import com.example.sociallib.app.LoginActivity;
-
+import android.os.Bundle;
 
 public abstract class SocialObject {
     /**
@@ -28,4 +26,12 @@ public abstract class SocialObject {
      * @return token
      */
     public abstract String getToken();
+
+    public abstract void setCallback(SocialCallback pCallback);
+
+    public interface SocialCallback {
+        void isSucceed(Bundle pUserBundle);
+
+        void isFailed();
+    }
 }

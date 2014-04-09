@@ -1,4 +1,4 @@
-package com.example.sociallib.app;
+package com.example.sociallib.app.sample;
 
 public enum SocialType {
 

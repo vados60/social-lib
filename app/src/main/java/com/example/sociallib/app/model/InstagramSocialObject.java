@@ -37,6 +37,11 @@ public class InstagramSocialObject extends SocialObject {
         return token;
     }
 
+    @Override
+    public void setCallback(SocialCallback pCallback) {
+
+    }
+
     public void setToken(String token) {
         this.token = token;
     }

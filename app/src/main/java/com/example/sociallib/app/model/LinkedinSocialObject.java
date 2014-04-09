@@ -2,6 +2,7 @@ package com.example.sociallib.app.model;
 
 import android.net.ParseException;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.example.sociallib.app.utils.SocialConst;
@@ -26,6 +27,7 @@ public class LinkedinSocialObject extends SocialObject {
     private String mState;
     private String mSecretKey;
     private String accessToken;
+    private SocialCallback mSocialCallback;
 
     public LinkedinSocialObject(String pApiKey, String pRedirectUri, String pState, String pSecretKey) {
         mApiKey = pApiKey;
@@ -66,6 +68,11 @@ public class LinkedinSocialObject extends SocialObject {
         return accessToken;
     }
 
+    @Override
+    public void setCallback(SocialCallback pCallback) {
+        mSocialCallback = pCallback;
+    }
+
     private void executePostRequest(final String pUrl) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
@@ -79,7 +86,9 @@ public class LinkedinSocialObject extends SocialObject {
                             String result = EntityUtils.toString(response.getEntity());
                             JSONObject resultJson = new JSONObject(result);
                             accessToken = resultJson.has(SocialConst.ACCESS_TOKEN) ? resultJson.getString(SocialConst.ACCESS_TOKEN) : null;
-                            Log.e("Tokenm", "" + accessToken);
+                            Bundle b = new Bundle();
+                            b.putString(SocialConst.ACCESS_TOKEN, accessToken);
+                            mSocialCallback.isSucceed(b);
                         }
                     }
                 } catch (IOException e) {

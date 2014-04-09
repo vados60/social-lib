@@ -1,4 +1,4 @@
-package com.example.sociallib.app;
+package com.example.sociallib.app.sample;
 
 import android.content.Context;
 import android.content.Intent;
