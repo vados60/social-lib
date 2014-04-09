@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SocialLib</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="login_sub_heading">Co-create opportunities</string>
+    <string name="login_btn_text">CLASSIC SIGNUP / LOGIN</string>
+    <string name="linkedin_desc_text_1"> To start co-creating opportunities\nsimply sign in with your favourite\nsocial network account. </string>
+    <string name="login_desc_text_1"> Don\'t have or don\'t want to use a\nsocial network account?</string>
+</resources>
