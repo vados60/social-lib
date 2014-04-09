@@ -1,12 +1,5 @@
 package com.example.sociallib.app.model;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.Log;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
-import com.example.sociallib.app.LoginActivity;
 import com.example.sociallib.app.utils.SocialConst;
 
 
