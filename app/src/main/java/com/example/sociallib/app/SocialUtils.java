@@ -6,6 +6,13 @@ import com.example.sociallib.app.utils.SocialConst;
 
 final class SocialUtils {
 
+    /**
+     * <p>Collect the Intent, that launches WebView, with the required type of Social Network </p>
+     *
+     * @param pSocialType Type of required Social Network (enum)
+     * @return collected intent
+     */
+
     static Intent loginSocial(Context pContext, SocialType pSocialType) {
 
         Intent intent = new Intent(pContext, LoginActivity.class);

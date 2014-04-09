@@ -8,6 +8,10 @@ public class InstagramSocialObject extends SocialObject {
     private String mRedirectUri;
     private String token;
 
+    /**
+     * @param pClientId    Instagram application ID
+     * @param pRedirectUri Redirect URL
+     */
     public InstagramSocialObject(String pClientId, String pRedirectUri) {
         mClientId = pClientId;
         mRedirectUri = pRedirectUri;

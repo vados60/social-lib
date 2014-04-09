@@ -8,6 +8,10 @@ public class FacebookSocialObject extends SocialObject {
     private String mRedirectUri;
     private String token;
 
+    /**
+     * @param pClientId    Facebook application ID
+     * @param pRedirectUri Redirect URL
+     */
     public FacebookSocialObject(String pClientId, String pRedirectUri) {
         mClientId = pClientId;
         mRedirectUri = pRedirectUri;

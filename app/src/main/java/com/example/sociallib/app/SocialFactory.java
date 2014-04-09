@@ -10,6 +10,14 @@ import com.example.sociallib.app.model.TwitterSocialObject;
 
 public class SocialFactory {
 
+    /**
+     * <p>Create SocialObject depending on the input parameter(enum) </p>
+     *
+     * @param pSocialType Type of required Social Network (enum)
+     * @return specific SocialObject
+     * @see com.example.sociallib.app.model.SocialObject
+     */
+
     public static SocialObject getSocialObject(SocialType pSocialType) {
         switch (pSocialType) {
 
