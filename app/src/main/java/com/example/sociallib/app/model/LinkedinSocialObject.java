@@ -21,35 +21,35 @@ public class LinkedinSocialObject extends SocialObject {
     private static final String STATE_PARAM = "state";
     private static final String CODE_PARAM = "code";
     private String mApiKey;
-    private String mRegirectUri;
+    private String mRedirectUri;
     private String mState;
     private String mSecretKey;
     private String accessToken;
 
-    public LinkedinSocialObject(String mApiKey, String mRegirectUri, String mState, String mSecretKey) {
-        this.mApiKey = mApiKey;
-        this.mRegirectUri = mRegirectUri;
-        this.mState = mState;
-        this.mSecretKey = mSecretKey;
+    public LinkedinSocialObject(String pApiKey, String pRedirectUri, String pState, String pSecretKey) {
+        mApiKey = pApiKey;
+        mRedirectUri = pRedirectUri;
+        mState = pState;
+        mSecretKey = pSecretKey;
     }
 
     @Override
     public Boolean isParseResponseSuccess(String response) {
-        if (response.startsWith(mRegirectUri)) {
+        if (response.startsWith(mRedirectUri)) {
             Uri uri = Uri.parse(response);
             String stateToken = uri.getQueryParameter(STATE_PARAM);
             if (stateToken == null || !stateToken.equals(mState)) {
                 Log.e("Authorize", "State token doesn't match");
-                return true;
+                return false;
             }
             String authorizationToken = uri.getQueryParameter(CODE_PARAM);
             if (authorizationToken == null) {
                 Log.i("Authorize", "The user doesn't allow authorization.");
-                return true;
+                return false;
             }
             Log.i("Authorize", "Auth token received: " + authorizationToken);
 
-            executePostRequest("https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=" + authorizationToken + "&redirect_uri=" + mRegirectUri + "&client_id=" + mApiKey + "&client_secret=" + mSecretKey);
+            executePostRequest("https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=" + authorizationToken + "&redirect_uri=" + mRedirectUri + "&client_id=" + mApiKey + "&client_secret=" + mSecretKey);
         }
         return true;
     }
@@ -57,7 +57,7 @@ public class LinkedinSocialObject extends SocialObject {
     @Override
     public String getUrl() {
 
-        return "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=" + mApiKey + "&state=" + mState + "&redirect_uri=" + mRegirectUri;
+        return "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=" + mApiKey + "&state=" + mState + "&redirect_uri=" + mRedirectUri;
     }
 
     @Override

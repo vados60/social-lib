@@ -13,6 +13,7 @@ public class FacebookSocialObject extends SocialObject {
         mRedirectUri = pRedirectUri;
     }
 
+    @Override
     public String getToken() {
         return token;
     }
