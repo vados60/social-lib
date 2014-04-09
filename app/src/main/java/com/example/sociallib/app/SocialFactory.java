@@ -20,7 +20,7 @@ public class SocialFactory {
                 return new InstagramSocialObject("941ecbadcc4e4f989ec4a959da9d08ba", "http://null");
 
             case LINKEDIN:
-                return new LinkedinSocialObject();
+                return new LinkedinSocialObject("7537riy2vq2sxv", "http://null.com", "DCEEFWF45453sdffef424", "AitA0VM2ZcLTdU19");
 
             case FACEBOOK:
                 return new FacebookSocialObject("426034244199496", "http://null.com");

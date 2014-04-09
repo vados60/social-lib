@@ -19,18 +19,30 @@ public class LinkedinSocialObject extends SocialObject {
 
     private static final String STATE_PARAM = "state";
     private static final String CODE_PARAM = "code";
-    private static final String STATE = "DCEEFWF45453sdffef424";
-    private static final String API_KEY = "7537riy2vq2sxv";
-    private static final String SECRET_KEY = "AitA0VM2ZcLTdU19";
-    private static final String REDIRECT_URI = "http://null.com";
-    private static final String URL = "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=" + API_KEY + "&state=" + STATE + "&redirect_uri=" + REDIRECT_URI;
+//    private static final String STATE = "DCEEFWF45453sdffef424";
+//    private static final String API_KEY = "7537riy2vq2sxv";
+//    private static final String SECRET_KEY = "AitA0VM2ZcLTdU19";
+//    private static final String REDIRECT_URI = "http://null.com";
+//    private static final String URL = "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=" + API_KEY + "&state=" + STATE + "&redirect_uri=" + REDIRECT_URI;
+
+    private String mApiKey;
+    private String mRegirectUri;
+    private String mState;
+    private String mSecretKey;
+
+    public LinkedinSocialObject(String mApiKey, String mRegirectUri, String mState, String mSecretKey) {
+        this.mApiKey = mApiKey;
+        this.mRegirectUri = mRegirectUri;
+        this.mState = mState;
+        this.mSecretKey = mSecretKey;
+    }
 
     @Override
     public Boolean isToken(String response) {
-        if (response.startsWith(REDIRECT_URI)) {
+        if (response.startsWith(mRegirectUri)) {
                     Uri uri = Uri.parse(response);
                     String stateToken = uri.getQueryParameter(STATE_PARAM);
-                    if (stateToken == null || !stateToken.equals(STATE)) {
+                    if (stateToken == null || !stateToken.equals(mState)) {
                         Log.e("Authorize", "State token doesn't match");
                         return true;
                     }
@@ -41,14 +53,15 @@ public class LinkedinSocialObject extends SocialObject {
                     }
                     Log.i("Authorize", "Auth token received: " + authorizationToken);
 
-                    executePostRequest("https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=" + authorizationToken + "&redirect_uri=" + REDIRECT_URI + "&client_id=" + API_KEY + "&client_secret=" + SECRET_KEY);
+                    executePostRequest("https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=" + authorizationToken + "&redirect_uri=" + mRegirectUri + "&client_id=" + mApiKey + "&client_secret=" + mSecretKey);
                 }
                 return true;
     }
 
     @Override
     public String getUrl() {
-        return null;
+
+        return "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=" + mApiKey + "&state=" + mState + "&redirect_uri=" + mRegirectUri;
     }
 
     @Override
@@ -56,43 +69,6 @@ public class LinkedinSocialObject extends SocialObject {
         return null;
     }
 
-//    @Override
-//    public void getWebViewClient(LoginActivity.ClientCallback pCallback, Context pContext) {
-//        WebViewClient client = new WebViewClient() {
-//
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                if (url.startsWith(REDIRECT_URI)) {
-//                    Uri uri = Uri.parse(url);
-//                    String stateToken = uri.getQueryParameter(STATE_PARAM);
-//                    if (stateToken == null || !stateToken.equals(STATE)) {
-//                        Log.e("Authorize", "State token doesn't match");
-//                        return true;
-//                    }
-//                    String authorizationToken = uri.getQueryParameter(CODE_PARAM);
-//                    if (authorizationToken == null) {
-//                        Log.i("Authorize", "The user doesn't allow authorization.");
-//                        return true;
-//                    }
-//                    Log.i("Authorize", "Auth token received: " + authorizationToken);
-//
-//                    executePostRequest("https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=" + authorizationToken + "&redirect_uri=" + REDIRECT_URI + "&client_id=" + API_KEY + "&client_secret=" + SECRET_KEY);
-//                }
-//                return true;
-//
-//            }
-//
-//            @Override
-//            public void onReceivedError(WebView view, int errorCode, String description, String
-//                    failingUrl) {
-//                super.onReceivedError(view, errorCode, description, failingUrl);
-//            }
-//        };
-//        pCallback.getClient(client, URL);
-//
-//    }
-//
-//
     private void executePostRequest(final String pUrl) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
