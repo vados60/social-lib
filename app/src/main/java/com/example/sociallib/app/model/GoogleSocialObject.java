@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.sociallib.app.LoginActivity;
+import com.example.sociallib.app.utils.SocialConst;
 
 
 public class GoogleSocialObject extends SocialObject {
@@ -27,9 +28,9 @@ public class GoogleSocialObject extends SocialObject {
     }
 
     @Override
-    public Boolean isToken(String response) {
+    public Boolean isParseResponseSuccess(String response) {
 
-        if (response.contains("access_token") & (!response.contains("error"))) {
+        if (response.contains(SocialConst.ACCESS_TOKEN) && (!response.contains(SocialConst.ERROR_CONST))) {
             setToken(response);
             return true;
         } else {

@@ -1,5 +1,7 @@
 package com.example.sociallib.app.model;
 
+import com.example.sociallib.app.utils.SocialConst;
+
 public class FacebookSocialObject extends SocialObject {
 
     private String mClientId;
@@ -20,8 +22,8 @@ public class FacebookSocialObject extends SocialObject {
     }
 
     @Override
-    public Boolean isToken(String response) {
-        if (response.contains("access_token") & (!response.contains("error"))) {
+    public Boolean isParseResponseSuccess(String response) {
+        if (response.contains(SocialConst.ACCESS_TOKEN) && (!response.contains(SocialConst.ERROR_CONST))) {
             setToken(response);
             return true;
         } else {

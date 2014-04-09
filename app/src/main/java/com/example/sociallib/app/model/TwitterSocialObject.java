@@ -2,7 +2,7 @@ package com.example.sociallib.app.model;
 
 public class TwitterSocialObject extends SocialObject {
     @Override
-    public Boolean isToken(String response) {
+    public Boolean isParseResponseSuccess(String response) {
         return null;
     }
 

@@ -25,7 +25,6 @@ public class MainActivity extends Activity {
         findViewById(R.id.pre_login_activity_layout_linkedin_button).setOnClickListener(listener);
         findViewById(R.id.pre_login_activity_layout_instagram_button).setOnClickListener(listener);
         findViewById(R.id.pre_login_activity_layout_twitter_button).setOnClickListener(listener);
-        findViewById(R.id.pre_login_activity_layout_classic_login_button).setOnClickListener(listener);
         findViewById(R.id.pre_login_activity_layout_google_plus_button).setOnClickListener(listener);
     }
 
@@ -36,7 +35,6 @@ public class MainActivity extends Activity {
         @Override
         public void onClick(View v) {
 
-//            String url = null;
             SocialType socialType = null;
             switch (v.getId()) {
 
@@ -63,10 +61,6 @@ public class MainActivity extends Activity {
                 case R.id.pre_login_activity_layout_google_plus_button:
                     socialType = SocialType.GOOGLE_PLUS;
                     break;
-//
-//                case R.id.pre_login_activity_layout_classic_login_button:
-//
-//                    break;
 
             }
             Intent intent = SocialUtils.loginSocial(getApplicationContext(), socialType);

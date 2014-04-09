@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.sociallib.app.model.SocialObject;
+import com.example.sociallib.app.utils.SocialConst;
 
 
 public class LoginActivity extends Activity {
@@ -26,7 +26,7 @@ public class LoginActivity extends Activity {
         mWebView = (WebView) findViewById(R.id.social_login_web_view);
 
         mWebView.setWebViewClient(new WebViewClientCallback());
-        mSocialObject = SocialFactory.getSocialObject((SocialType) getIntent().getExtras().getSerializable("type"));
+        mSocialObject = SocialFactory.getSocialObject((SocialType) getIntent().getExtras().getSerializable(SocialConst.TYPE));
         mWebView.loadUrl(mSocialObject.getUrl());
 
     }
@@ -36,7 +36,7 @@ public class LoginActivity extends Activity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
-            if (mSocialObject.isToken(url)){
+            if (mSocialObject.isParseResponseSuccess(url)){
 //                Log.e("FB", mSocialObject.getToken());
             }
 
