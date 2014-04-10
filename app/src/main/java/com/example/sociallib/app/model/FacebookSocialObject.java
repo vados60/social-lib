@@ -12,10 +12,12 @@ public class FacebookSocialObject extends SocialObject {
     private SocialCallback mSocialCallback;
 
     /**
+     * @param pSocialCallback Callback object. SocialCallback interface should be implemented.
      * @param pClientId    Facebook application ID
      * @param pRedirectUri Redirect URL
      */
-    public FacebookSocialObject( String pClientId, String pRedirectUri) {
+    public FacebookSocialObject(SocialCallback pSocialCallback, String pClientId, String pRedirectUri) {
+        mSocialCallback = pSocialCallback;
         mClientId = pClientId;
         mRedirectUri = pRedirectUri;
     }
@@ -23,11 +25,6 @@ public class FacebookSocialObject extends SocialObject {
     @Override
     public String getToken() {
         return token;
-    }
-
-    @Override
-    public void setCallback(SocialCallback pCallback) {
-        mSocialCallback = pCallback;
     }
 
     public void setToken(String token) {
@@ -39,7 +36,7 @@ public class FacebookSocialObject extends SocialObject {
         if (response.contains(SocialConst.ACCESS_TOKEN) && (!response.contains(SocialConst.ERROR_CONST))) {
             setToken(response);
             Bundle b = new Bundle();
-            b.putString(SocialConst.ACCESS_TOKEN, getToken());
+            b.putString(SocialConst.ACCESS_TOKEN, response);
             mSocialCallback.isSucceed(b);
             return true;
         } else {

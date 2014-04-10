@@ -1,5 +1,7 @@
 package com.example.sociallib.app.model;
 
+import android.os.Bundle;
+
 import com.example.sociallib.app.utils.SocialConst;
 
 public class InstagramSocialObject extends SocialObject {
@@ -9,18 +11,23 @@ public class InstagramSocialObject extends SocialObject {
     private String token;
 
     /**
+     * @param pSocialCallback Callback object. SocialCallback interface should be implemented.
      * @param pClientId    Instagram application ID
      * @param pRedirectUri Redirect URL
      */
-    public InstagramSocialObject(String pClientId, String pRedirectUri) {
+    public InstagramSocialObject(SocialCallback pSocialCallback, String pClientId, String pRedirectUri) {
         mClientId = pClientId;
         mRedirectUri = pRedirectUri;
+        mSocialCallback = pSocialCallback;
     }
 
     @Override
     public Boolean isParseResponseSuccess(String response) {
         if (response.contains(SocialConst.ACCESS_TOKEN) && (!response.contains(SocialConst.ERROR_CONST))) {
-            setToken(response);
+//            setToken(response);
+            Bundle b = new Bundle();
+            b.putString(SocialConst.ACCESS_TOKEN, response);
+            mSocialCallback.isSucceed(b);
             return true;
         } else {
             return false;
@@ -35,11 +42,6 @@ public class InstagramSocialObject extends SocialObject {
     @Override
     public String getToken() {
         return token;
-    }
-
-    @Override
-    public void setCallback(SocialCallback pCallback) {
-
     }
 
     public void setToken(String token) {

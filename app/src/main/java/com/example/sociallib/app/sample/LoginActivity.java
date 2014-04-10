@@ -28,8 +28,7 @@ public class LoginActivity extends Activity {
         mWebView = (WebView) findViewById(R.id.social_login_web_view);
 
         mWebView.setWebViewClient(new WebViewClientCallback());
-        mSocialObject = SocialFactory.getSocialObject((SocialType) getIntent().getExtras().getSerializable(SocialConst.TYPE));
-        mSocialObject.setCallback(new CallbackReceiver());
+        mSocialObject = SocialFactory.getSocialObject((SocialType) getIntent().getExtras().getSerializable(SocialConst.TYPE), new CallbackReceiver());
         mWebView.loadUrl(mSocialObject.getUrl());
 
     }

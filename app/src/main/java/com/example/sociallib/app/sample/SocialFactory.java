@@ -17,23 +17,23 @@ public class SocialFactory {
      * @see com.example.sociallib.app.model.SocialObject
      */
 
-    public static SocialObject getSocialObject(SocialType pSocialType) {
+    public static SocialObject getSocialObject(SocialType pSocialType, SocialObject.SocialCallback pSocialCallback) {
         switch (pSocialType) {
 
             case TWITTER:
 //                return new TwitterSocialObject();
 
             case INSTAGRAM:
-//                return new InstagramSocialObject("941ecbadcc4e4f989ec4a959da9d08ba", "http://null");
+                return new InstagramSocialObject(pSocialCallback, "941ecbadcc4e4f989ec4a959da9d08ba", "http://null.com");
 
             case LINKEDIN:
-                return new LinkedinSocialObject("7537riy2vq2sxv", "http://null.com", "DCEEFWF45453sdffef424", "AitA0VM2ZcLTdU19");
+                return new LinkedinSocialObject(pSocialCallback, "7537riy2vq2sxv", "http://null.com", "DCEEFWF45453sdffef424", "AitA0VM2ZcLTdU19");
 
             case FACEBOOK:
-//                return new FacebookSocialObject("426034244199496", "http://null.com");
+                return new FacebookSocialObject(pSocialCallback, "426034244199496", "http://null.com");
 
             case GOOGLE_PLUS:
-//                return new GoogleSocialObject("1033746217948-p5jn9kgocbbd09c5h7e76tb9152ak5jl.apps.googleusercontent.com", "https://www.example.com/oauth2callback");
+                return new GoogleSocialObject(pSocialCallback, "1033746217948-p5jn9kgocbbd09c5h7e76tb9152ak5jl.apps.googleusercontent.com", "https://www.example.com/oauth2callback");
         }
 
         return null;

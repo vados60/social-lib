@@ -27,13 +27,13 @@ public class LinkedinSocialObject extends SocialObject {
     private String mState;
     private String mSecretKey;
     private String accessToken;
-    private SocialCallback mSocialCallback;
 
-    public LinkedinSocialObject(String pApiKey, String pRedirectUri, String pState, String pSecretKey) {
+    public LinkedinSocialObject(SocialCallback pSocialCallback, String pApiKey, String pRedirectUri, String pState, String pSecretKey) {
         mApiKey = pApiKey;
         mRedirectUri = pRedirectUri;
         mState = pState;
         mSecretKey = pSecretKey;
+        mSocialCallback = pSocialCallback;
     }
 
     @Override
@@ -66,11 +66,6 @@ public class LinkedinSocialObject extends SocialObject {
     @Override
     public String getToken() {
         return accessToken;
-    }
-
-    @Override
-    public void setCallback(SocialCallback pCallback) {
-        mSocialCallback = pCallback;
     }
 
     private void executePostRequest(final String pUrl) {

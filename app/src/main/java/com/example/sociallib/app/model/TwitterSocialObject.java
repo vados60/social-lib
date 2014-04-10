@@ -16,10 +16,6 @@ public class TwitterSocialObject extends SocialObject {
         return null;
     }
 
-    @Override
-    public void setCallback(SocialCallback pCallback) {
-
-    }
 
 //    private RequestQueue mRequestQueue;
 //    private Context mContext;
