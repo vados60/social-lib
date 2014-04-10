@@ -10,7 +10,6 @@ public class GoogleSocialObject extends SocialObject {
 
     private String mClientId;
     private String mRedirectUri;
-    private String token;
 
     private static final String URL = "https://accounts.google.com/o/oauth2/auth?client_id=1033746217948-p5jn9kgocbbd09c5h7e76tb9152ak5jl.apps.googleusercontent.com&response_type=token&scope=email&redirect_uri=https://www.example.com/oauth2callback&login_hint=jsmith@example.com";
 
@@ -24,10 +23,6 @@ public class GoogleSocialObject extends SocialObject {
         mSocialCallback = pSocialCallback;
         mClientId = pClientId;
         mRedirectUri = pRedirectUri;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     @Override
@@ -48,9 +43,5 @@ public class GoogleSocialObject extends SocialObject {
         return "https://accounts.google.com/o/oauth2/auth?client_id=" + mClientId + "&response_type=token&scope=email&redirect_uri=" + mRedirectUri + "&login_hint=jsmith@example.com";
     }
 
-    @Override
-    public String getToken() {
-        return token;
-    }
 
 }

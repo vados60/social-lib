@@ -23,13 +23,6 @@ public abstract class SocialObject {
      */
     public abstract String getUrl();
 
-    /**
-     * <p>Return token that was successful parsed </p>
-     *
-     * @return token
-     */
-    public abstract String getToken();
-
     public interface SocialCallback {
         void isSucceed(Bundle pUserBundle);
 

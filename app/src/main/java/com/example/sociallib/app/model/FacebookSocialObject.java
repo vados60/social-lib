@@ -8,7 +8,6 @@ public class FacebookSocialObject extends SocialObject {
 
     private String mClientId;
     private String mRedirectUri;
-    private String token;
     private SocialCallback mSocialCallback;
 
     /**
@@ -22,19 +21,10 @@ public class FacebookSocialObject extends SocialObject {
         mRedirectUri = pRedirectUri;
     }
 
-    @Override
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 
     @Override
     public Boolean isParseResponseSuccess(String response) {
         if (response.contains(SocialConst.ACCESS_TOKEN) && (!response.contains(SocialConst.ERROR_CONST))) {
-            setToken(response);
             Bundle b = new Bundle();
             b.putString(SocialConst.ACCESS_TOKEN, response);
             mSocialCallback.isSucceed(b);

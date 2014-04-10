@@ -26,7 +26,7 @@ public class SocialHelper {
                 url = "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=7537riy2vq2sxv&state=DCEEFWF45453sdffef424&redirect_uri=http://null.com";
                 break;
 
-            case TWITTER:
+            case VK:
 
                 break;
         }

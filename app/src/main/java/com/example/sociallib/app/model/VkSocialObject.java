@@ -4,26 +4,24 @@ import android.os.Bundle;
 
 import com.example.sociallib.app.utils.SocialConst;
 
-public class InstagramSocialObject extends SocialObject {
+public class VkSocialObject extends SocialObject {
+
+//    https://oauth.vk.com/authorize?client_id=4090078&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,messages&display=mobile&v=5.5&response_type=token
 
     private String mClientId;
     private String mRedirectUri;
+    private String mScope;
 
-    /**
-     * @param pSocialCallback Callback object. SocialCallback interface should be implemented.
-     * @param pClientId    Instagram application ID
-     * @param pRedirectUri Redirect URL
-     */
-    public InstagramSocialObject(SocialCallback pSocialCallback, String pClientId, String pRedirectUri) {
-        mClientId = pClientId;
-        mRedirectUri = pRedirectUri;
+    public VkSocialObject(SocialCallback pSocialCallback, String pClientId, String pResirestUri, String pScope) {
         mSocialCallback = pSocialCallback;
+        mClientId = pClientId;
+        mRedirectUri = pResirestUri;
+        mScope = pScope;
     }
 
     @Override
     public Boolean isParseResponseSuccess(String response) {
         if (response.contains(SocialConst.ACCESS_TOKEN) && (!response.contains(SocialConst.ERROR_CONST))) {
-//            setToken(response);
             Bundle b = new Bundle();
             b.putString(SocialConst.ACCESS_TOKEN, response);
             mSocialCallback.isSucceed(b);
@@ -35,7 +33,7 @@ public class InstagramSocialObject extends SocialObject {
 
     @Override
     public String getUrl() {
-        return "https://api.instagram.com/oauth/authorize/?client_id=" + mClientId + "&redirect_uri=" + mRedirectUri + "&response_type=token";
+        return "https://oauth.vk.com/authorize?client_id=" + mClientId + "&redirect_uri=" + mRedirectUri + "&scope=" + mScope + "&display=mobile&v=5.5&response_type=token";
     }
 
-   }
+}

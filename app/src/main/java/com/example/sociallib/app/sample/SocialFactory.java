@@ -5,6 +5,7 @@ import com.example.sociallib.app.model.GoogleSocialObject;
 import com.example.sociallib.app.model.InstagramSocialObject;
 import com.example.sociallib.app.model.LinkedinSocialObject;
 import com.example.sociallib.app.model.SocialObject;
+import com.example.sociallib.app.model.VkSocialObject;
 
 
 public class SocialFactory {
@@ -20,8 +21,8 @@ public class SocialFactory {
     public static SocialObject getSocialObject(SocialType pSocialType, SocialObject.SocialCallback pSocialCallback) {
         switch (pSocialType) {
 
-            case TWITTER:
-//                return new TwitterSocialObject();
+            case VK:
+                return new VkSocialObject(pSocialCallback, "4090078", "https://oauth.vk.com/blank.html", "friends,messages");
 
             case INSTAGRAM:
                 return new InstagramSocialObject(pSocialCallback, "941ecbadcc4e4f989ec4a959da9d08ba", "http://null.com");

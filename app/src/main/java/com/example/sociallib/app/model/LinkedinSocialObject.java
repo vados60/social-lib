@@ -63,11 +63,6 @@ public class LinkedinSocialObject extends SocialObject {
         return "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=" + mApiKey + "&state=" + mState + "&redirect_uri=" + mRedirectUri;
     }
 
-    @Override
-    public String getToken() {
-        return accessToken;
-    }
-
     private void executePostRequest(final String pUrl) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
