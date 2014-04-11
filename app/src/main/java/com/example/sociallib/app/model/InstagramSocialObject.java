@@ -23,7 +23,6 @@ public class InstagramSocialObject extends SocialObject {
     @Override
     public Boolean isParseResponseSuccess(String response) {
         if (response.contains(SocialConst.ACCESS_TOKEN) && (!response.contains(SocialConst.ERROR_CONST))) {
-//            setToken(response);
             Bundle b = new Bundle();
             b.putString(SocialConst.ACCESS_TOKEN, response);
             mSocialCallback.isSucceed(b);

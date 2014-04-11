@@ -11,8 +11,6 @@ public class GoogleSocialObject extends SocialObject {
     private String mClientId;
     private String mRedirectUri;
 
-    private static final String URL = "https://accounts.google.com/o/oauth2/auth?client_id=1033746217948-p5jn9kgocbbd09c5h7e76tb9152ak5jl.apps.googleusercontent.com&response_type=token&scope=email&redirect_uri=https://www.example.com/oauth2callback&login_hint=jsmith@example.com";
-
     /**
      * @param pSocialCallback Callback object. SocialCallback interface should be implemented.
      * @param pClientId    Google application ID
