@@ -39,7 +39,7 @@ public class LoginActivity extends Activity {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
             if (mSocialObject.isParseResponseSuccess(url)){
-//                Log.e("FB", mSocialObject.getToken());
+                //do smth
             }
 
             view.loadUrl(url);

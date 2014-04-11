@@ -50,14 +50,7 @@ public class MainActivity extends Activity {
                 case R.id.pre_login_activity_layout_instagram_button:
                     socialType = SocialType.INSTAGRAM;
                     break;
-//
-//                case R.id.pre_login_activity_layout_twitter_button:
-////                    url = "https://api.twitter.com/oauth/request_token?oauth_callback=http%3A%2F%2Fthemattharris.local%2Fauth.php,twitterclient%3A%2F%2Fcallback";
-////                    socialType = SocialType.VK;
-////                    launchPrepare();
-//
-//                    return;
-//
+
                 case R.id.pre_login_activity_layout_vk_button:
                     socialType = SocialType.VK;
                     break;

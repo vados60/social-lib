@@ -6,8 +6,6 @@ import com.example.sociallib.app.utils.SocialConst;
 
 public class VkSocialObject extends SocialObject {
 
-//    https://oauth.vk.com/authorize?client_id=4090078&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,messages&display=mobile&v=5.5&response_type=token
-
     private String mClientId;
     private String mRedirectUri;
     private String mScope;
