@@ -2,9 +2,11 @@ package com.example.sociallib.app.model;
 
 import android.net.ParseException;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.example.sociallib.app.utils.SocialConst;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -26,11 +28,12 @@ public class LinkedinSocialObject extends SocialObject {
     private String mSecretKey;
     private String accessToken;
 
-    public LinkedinSocialObject(String pApiKey, String pRedirectUri, String pState, String pSecretKey) {
+    public LinkedinSocialObject(SocialCallback pSocialCallback, String pApiKey, String pRedirectUri, String pState, String pSecretKey) {
         mApiKey = pApiKey;
         mRedirectUri = pRedirectUri;
         mState = pState;
         mSecretKey = pSecretKey;
+        mSocialCallback = pSocialCallback;
     }
 
     @Override
@@ -60,11 +63,6 @@ public class LinkedinSocialObject extends SocialObject {
         return "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=" + mApiKey + "&state=" + mState + "&redirect_uri=" + mRedirectUri;
     }
 
-    @Override
-    public String getToken() {
-        return accessToken;
-    }
-
     private void executePostRequest(final String pUrl) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
@@ -78,7 +76,9 @@ public class LinkedinSocialObject extends SocialObject {
                             String result = EntityUtils.toString(response.getEntity());
                             JSONObject resultJson = new JSONObject(result);
                             accessToken = resultJson.has(SocialConst.ACCESS_TOKEN) ? resultJson.getString(SocialConst.ACCESS_TOKEN) : null;
-                            Log.e("Tokenm", "" + accessToken);
+                            Bundle b = new Bundle();
+                            b.putString(SocialConst.ACCESS_TOKEN, accessToken);
+                            mSocialCallback.isSucceed(b);
                         }
                     }
                 } catch (IOException e) {

@@ -1,8 +1,8 @@
-package com.example.sociallib.app;
+package com.example.sociallib.app.sample;
 
 public enum SocialType {
 
-    TWITTER,
+    VK,
     FACEBOOK,
     GOOGLE_PLUS,
     INSTAGRAM,
