@@ -55,7 +55,7 @@ public class LoginActivity extends Activity {
 
         @Override
         public void isSucceed(Bundle pUserBundle) {
-            Log.e("---", pUserBundle.getString(SocialConst.ACCESS_TOKEN).toString());
+            Log.e("ACCESS_TOKEN", pUserBundle.getString(SocialConst.ACCESS_TOKEN).toString());
         }
 
         @Override
