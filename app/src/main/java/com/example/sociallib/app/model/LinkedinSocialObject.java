@@ -64,7 +64,8 @@ public class LinkedinSocialObject extends SocialObject {
     }
 
     private void executePostRequest(final String pUrl) {
-        Executors.newSingleThreadExecutor().execute(new Runnable() {
+
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 HttpClient httpClient = new DefaultHttpClient();
@@ -75,10 +76,10 @@ public class LinkedinSocialObject extends SocialObject {
                         if (response.getStatusLine().getStatusCode() == 200) {
                             String result = EntityUtils.toString(response.getEntity());
                             JSONObject resultJson = new JSONObject(result);
-                            accessToken = resultJson.has(SocialConst.ACCESS_TOKEN) ? resultJson.getString(SocialConst.ACCESS_TOKEN) : null;
-                            Bundle b = new Bundle();
-                            b.putString(SocialConst.ACCESS_TOKEN, accessToken);
-                            mSocialCallback.isSucceed(b);
+                            accessToken = resultJson.has(ACCESS_TOKEN) ? resultJson.getString(ACCESS_TOKEN) : null;
+                            Bundle linkedInBundle = new Bundle();
+                            linkedInBundle.putString(ACCESS_TOKEN, accessToken);
+                            mSocialCallback.isSucceed(linkedInBundle);
                         }
                     }
                 } catch (IOException e) {
@@ -88,9 +89,8 @@ public class LinkedinSocialObject extends SocialObject {
                 } catch (JSONException e) {
                     Log.e("Authorize", "Error Parsing Http response " + e.getLocalizedMessage());
                 }
-
             }
-        });
+        }).start();
     }
 
 }

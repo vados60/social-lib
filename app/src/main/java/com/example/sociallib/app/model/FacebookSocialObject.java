@@ -2,8 +2,6 @@ package com.example.sociallib.app.model;
 
 import android.os.Bundle;
 
-import com.example.sociallib.app.utils.SocialConst;
-
 public class FacebookSocialObject extends SocialObject {
 
     private String mClientId;
@@ -24,10 +22,10 @@ public class FacebookSocialObject extends SocialObject {
 
     @Override
     public Boolean isParseResponseSuccess(String response) {
-        if (response.contains(SocialConst.ACCESS_TOKEN) && (!response.contains(SocialConst.ERROR_CONST))) {
-            Bundle b = new Bundle();
-            b.putString(SocialConst.ACCESS_TOKEN, response);
-            mSocialCallback.isSucceed(b);
+        if (response.contains(ACCESS_TOKEN) && (!response.contains(ERROR_CONST))) {
+            Bundle fbBundle = new Bundle();
+            fbBundle.putString(ACCESS_TOKEN, response);
+            mSocialCallback.isSucceed(fbBundle);
             return true;
         } else {
             return false;
